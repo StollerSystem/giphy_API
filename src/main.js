@@ -11,27 +11,48 @@ $(document).ready(function() {
     $('#search').val("");
 
     let request = new XMLHttpRequest();
-   const url = `http://api.giphy.com/v1/gifs/search?q=${inputtedSearch}&api_key=${process.env.API_KEY}&limit=20`;
+    const url = `http://api.giphy.com/v1/gifs/search?q=${inputtedSearch}&api_key=${process.env.API_KEY}&limit=20`;
     request.onreadystatechange = function() {
-      if (this.readyState === 4 && this.status === 200) { //appid
+      if (this.readyState === 4 && this.status === 200) { 
         const response = JSON.parse(this.responseText);
+        console.log("First request!")
         getElements(response);
       }
     };
-
+  
     request.open("GET", url, true);
     request.send();
 
-    function getElements(response) {
-        //  $('#output').text(`The humidity in ${inputtedSearch} is ${response.data[0].embed_url}`);
-      // $('.showTemp').text(`The temperature in Kelvins is ${response.main.temp} degrees.`);
+    });
+
+    $('#trending').click(function(event) {
+      event.preventDefault();
+      let newrequest = new XMLHttpRequest();
+      const trendingurl = `http://api.giphy.com/v1/gifs/trending?&api_key=${process.env.API_KEY}&limit=20`;
+      newrequest.onreadystatechange = function() {
+      if (this.readyState === 4 && this.status === 200) { 
+        const newresponse = JSON.parse(this.responseText);
+        getTrendingElements(newresponse);
+        }
+      };  
+      newrequest.open("GET", trendingurl, true);
+      newrequest.send();  
+    });  
+
+    
+    
+    
+    function getElements(response) {        
       response.data.forEach(function(element){
-         $("#output").append(`<IMG SRC=${element.images.downsized.url}>`)
-         //$("#output")
-        console.log(element)
-      })
-     
+        $("#output").append(`<IMG SRC=${element.images.downsized.url}>`);
+      });
     }
-  
-  });
+
+    function getTrendingElements(newresponse) {        
+      newresponse.data.forEach(function(element){
+        $("#trending-output").append(`<IMG SRC=${element.images.downsized.url}>`);
+      });
+    }
 });
+
+  
