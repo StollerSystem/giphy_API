@@ -6,15 +6,14 @@ import './css/styles.css';
 
 $(document).ready(function() {
   $('#searchBtn').click(function(event) {
-    event.preventDefault();
+    event.preventDefault(); 
     const inputtedSearch = $('#search').val();
     $('#search').val("");
 
     let request = new XMLHttpRequest();
-    const url = `http://api.giphy.com/v1/gifs/search?q=${inputtedSearch}&api_key=${process.env.API_KEY}&limit=20`;
-
+   const url = `http://api.giphy.com/v1/gifs/search?q=${inputtedSearch}&api_key=${process.env.API_KEY}&limit=20`;
     request.onreadystatechange = function() {
-      if (this.readyState === 4 && this.status === 200) {
+      if (this.readyState === 4 && this.status === 200) { //appid
         const response = JSON.parse(this.responseText);
         getElements(response);
       }
@@ -24,11 +23,12 @@ $(document).ready(function() {
     request.send();
 
     function getElements(response) {
-        // $('#output').text(`The humidity in ${inputtedSearch} is ${response.data[0].embed_url}`);
+        //  $('#output').text(`The humidity in ${inputtedSearch} is ${response.data[0].embed_url}`);
       // $('.showTemp').text(`The temperature in Kelvins is ${response.main.temp} degrees.`);
       response.data.forEach(function(element){
-        $("#output").append(element.embed_url)
-      
+         $("#output").append(`<IMG SRC=${element.url}>`)
+         //$("#output")
+        console.log(element)
       })
      
     }
