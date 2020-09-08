@@ -10,7 +10,6 @@ $(document).ready(function() {
     event.preventDefault(); 
     const inputtedSearch = $('#search').val();
     $('#search').val("");
-    $("h1").show();
     let request = new XMLHttpRequest();
     const url = `http://api.giphy.com/v1/gifs/search?q=${inputtedSearch}&api_key=${process.env.API_KEY}&${results}`;
     request.onreadystatechange = function() {
