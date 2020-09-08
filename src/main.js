@@ -26,7 +26,7 @@ $(document).ready(function() {
         //  $('#output').text(`The humidity in ${inputtedSearch} is ${response.data[0].embed_url}`);
       // $('.showTemp').text(`The temperature in Kelvins is ${response.main.temp} degrees.`);
       response.data.forEach(function(element){
-         $("#output").append(`<IMG SRC=${element.url}>`)
+         $("#output").append(`<IMG SRC=${element.images.downsized.url}>`)
          //$("#output")
         console.log(element)
       })
