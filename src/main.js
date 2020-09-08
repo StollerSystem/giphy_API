@@ -5,26 +5,33 @@ import './css/styles.css';
 
 
 $(document).ready(function() {
-  $('#weatherLocation').click(function() {
-    const city = $('#location').val();
-    $('#location').val("");
+  $('#searchBtn').click(function(event) {
+    event.preventDefault();
+    const inputtedSearch = $('#search').val();
+    $('#search').val("");
 
     let request = new XMLHttpRequest();
-    const url = 
+    const url = `http://api.giphy.com/v1/gifs/search?q=${inputtedSearch}&api_key=${process.env.API_KEY}&limit=20`;
 
     request.onreadystatechange = function() {
       if (this.readyState === 4 && this.status === 200) {
         const response = JSON.parse(this.responseText);
         getElements(response);
       }
-    }
+    };
 
     request.open("GET", url, true);
     request.send();
 
     function getElements(response) {
-      $('.showHumidity').text(`The humidity in ${city} is ${response.main.humidity}%`);
-      $('.showTemp').text(`The temperature in Kelvins is ${response.main.temp} degrees.`);
+        // $('#output').text(`The humidity in ${inputtedSearch} is ${response.data[0].embed_url}`);
+      // $('.showTemp').text(`The temperature in Kelvins is ${response.main.temp} degrees.`);
+      response.data.forEach(function(element){
+        $("#output").append(element.embed_url)
+      
+      })
+     
     }
+  
   });
 });
