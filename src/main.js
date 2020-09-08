@@ -10,7 +10,7 @@ $(document).ready(function() {
     event.preventDefault(); 
     const inputtedSearch = $('#search').val();
     $('#search').val("");
-
+    $("h1").show();
     let request = new XMLHttpRequest();
     const url = `http://api.giphy.com/v1/gifs/search?q=${inputtedSearch}&api_key=${process.env.API_KEY}&${results}`;
     request.onreadystatechange = function() {
@@ -37,9 +37,19 @@ $(document).ready(function() {
     };  
     newrequest.open("GET", trendingurl, true);
     newrequest.send();  
-  });    
-  
-  // Random line 
+  });   
+   
+  $('#uploadfile').click(function(event) {
+    event.preventDefault();
+    let uploadrequest= new XMLHttpRequest();
+    const uploadfile = $('#yourupload').val();
+    const uploadurl = `http://upload.giphy.com/v1/gifs&api_key=${process.env.API_KEY}&file=${uploadfile}`
+    console.log(uploadurl);
+    uploadrequest.open("POST",uploadurl, true)
+    uploadrequest.send();
+    $('#yourupload').append("Upload is complete.")
+  })
+
   $('#random').click(function(event) {
     event.preventDefault();
     let randrequest = new XMLHttpRequest();

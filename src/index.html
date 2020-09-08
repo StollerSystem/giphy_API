@@ -5,18 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
-<body>
+<body class='inverted'>
+  <p class='display-2 text-center'>The amazing black and white GIF page</p>
   <div class="container">
     <form id="formOne">
       <h1>Search GIPHY!</h1>
       <label for ="search">Search GIPHY</label>
-      <input id="search" type="text">
+    <input id="search" type="text">
       <label for ="results">Enter number of results</label>
       <input id="results" type="number">
-      <button class="btn" id="searchBtn">Search!</button>
-      <button class="btn" id="trending">Trending!</button>
-      <button class="btn" id="random">Random</button>
+      <br>
+      <br>
+      <button class="btn-danger" id="searchBtn">Search!</button>
+      <button class="btn-danger" id="trending">Trending!</button>
+      <button class="btn-danger" id="random">Random</button>
     </form>
+    <hr>
     <h1> Search results:</h1>
     <div id="output"></div>
     <hr>
@@ -25,6 +29,11 @@
     <hr>
     <h1> Random GIF! </h1>
     <div id="random-output"></div>
+    <hr>
+    <h1>Upload a Gif</h1>
+    <!-- <label for="yourupload">Add a picture to giphy here:</label>
+    <input type ="file" id="yourupload" name="yourupload" accept="image/png, image/jpeg">
+    <button id="uploadfile">Upload your picture</button>  -->
   </div>
 </body>
 </html>

@@ -1,0 +1,21 @@
+.inverted {
+  background: black;
+  color: white;
+}
+
+.container {
+  text-align: center;
+}
+
+img {  
+  border: solid white;
+  height: 300px;
+  width: 300px;
+  object-fit:scale-down;
+  filter: grayscale(100%);
+}
+
+
+h1 {
+  display: none;
+}
